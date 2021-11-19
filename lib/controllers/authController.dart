@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ps_cross_2semestre/constants/firebase_constants.dart';
 import 'package:ps_cross_2semestre/models/user.dart';
 import 'package:ps_cross_2semestre/pages/home.page.dart';
+
 import 'package:ps_cross_2semestre/pages/login.page.dart';
 import 'package:ps_cross_2semestre/services/database.dart';
 

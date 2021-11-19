@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ps_cross_2semestre/controllers/homeController.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int currentIndex = 0;
+class HomePage extends StatelessWidget {
+  final HomePageController controller = Get.put(HomePageController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +17,8 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               _BottomNavigationBar(
-                currentIndex: currentIndex,
-                onItemTap: (i) => setState(() => currentIndex = i),
+                currentIndex: controller.currentIndex.value,
+                onItemTap: ((i) => controller.setSelectedIndex(i)),
                 items: <Icon>[
                   Icon(Icons.exit_to_app),
                   Icon(Icons.description),
