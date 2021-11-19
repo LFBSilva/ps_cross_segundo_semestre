@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ps_cross_2semestre/controllers/authController.dart';
 
 import 'home.page.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
+class LoginPage extends GetWidget<AuthController> {
+  final TextEditingController email = TextEditingController();
 
-class _LoginPageState extends State<LoginPage> {
-  ///email: admin@admin.com
-  String email = '';
-
-  ///senha: 123456
-  String senha = '';
+  final TextEditingController senha = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +28,7 @@ class _LoginPageState extends State<LoginPage> {
               Divider(),
               Divider(),
               TextFormField(
-                onChanged: (text) {
-                  email = text;
-                },
+                controller: email,
                 autofocus: true,
                 keyboardType: TextInputType.number,
                 style: new TextStyle(color: Colors.white, fontSize: 22),
@@ -47,9 +39,7 @@ class _LoginPageState extends State<LoginPage> {
               Divider(),
               Divider(),
               TextFormField(
-                onChanged: (text) {
-                  senha = text;
-                },
+                controller: senha,
                 autofocus: true,
                 obscureText: true,
                 keyboardType: TextInputType.text,
@@ -60,25 +50,38 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Divider(),
               ButtonTheme(
-                  height: 60.0,
-                  child: RaisedButton(
-                    onPressed: () => {
-                      if (email == 'admin@admin.com' && senha == '123456')
-                        {
-                          // Navigator.of(context).push(
-                          //   MaterialPageRoute(builder: (context) => HomePage()),
-                          // )
-                          Get.to(HomePage()),
-                        }
-                      else
-                        {"Login/Senha incorreto(s)"},
-                    },
-                    child: Text(
-                      "Entrar",
-                      style: TextStyle(color: Colors.deepOrange),
-                    ),
-                    color: Colors.white,
-                  ))
+                height: 60.0,
+                child: RaisedButton(
+                  onPressed: () => {
+                    if (email == 'admin@admin.com' && senha == '123456')
+                      {
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(builder: (context) => HomePage()),
+                        // )
+                        Get.to(HomePage()),
+                      }
+                    else
+                      {"Login/Senha incorreto(s)"},
+                  },
+                  child: Text(
+                    "Entrar",
+                    style: TextStyle(color: Colors.deepOrange),
+                  ),
+                  color: Colors.white,
+                ),
+              ),
+              ButtonTheme(
+                height: 60.0,
+                child: RaisedButton(
+                  onPressed: () =>
+                      {controller.createUser(email.text, senha.text)},
+                  child: Text(
+                    "Criar Usuário",
+                    style: TextStyle(color: Colors.deepOrange),
+                  ),
+                  color: Colors.white,
+                ),
+              ),
             ],
           ),
         ),
