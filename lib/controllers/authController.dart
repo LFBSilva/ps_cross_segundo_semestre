@@ -1,37 +1,54 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:ps_cross_2semestre/controllers/userController.dart';
+import 'package:ps_cross_2semestre/constants/firebase_constants.dart';
 import 'package:ps_cross_2semestre/models/user.dart';
+import 'package:ps_cross_2semestre/pages/home.page.dart';
+import 'package:ps_cross_2semestre/pages/login.page.dart';
 import 'package:ps_cross_2semestre/services/database.dart';
 
 class AuthController extends GetxController {
-  FirebaseAuth _auth = FirebaseAuth.instance;
-  Rx<FirebaseUser> _firebaseUser = Rx<FirebaseUser>();
-
-  FirebaseUser get user => _firebaseUser.value;
+  static AuthController authInstance = Get.find();
+  Rx<User> firebaseUser;
 
   @override
-  onInit() {
-    _firebaseUser.bindStream(_auth.onAuthStateChanged);
+  void onReady() {
+    super.onReady();
+    firebaseUser = Rx<User>(auth.currentUser);
+    firebaseUser.bindStream(auth.userChanges());
+
+    ever(firebaseUser, _setInitialScreen);
   }
 
-  void createUser(String email, String password) async {
+  _setInitialScreen(User user) {
+    if (user != null) {
+      // user is logged in
+      Get.offAll(() => HomePage());
+    } else {
+      // user is null as in user is not available or not logged in
+      Get.offAll(() => LoginPage());
+    }
+  }
+
+  void register(String email, String password) async {
     try {
-      AuthResult _authResult = await _auth.createUserWithEmailAndPassword(
-          email: email.trim(), password: password);
-      //create user in database.dart
+      UserCredential authResult = await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       UserModel _user = UserModel(
-        id: _authResult.user.uid,
-        email: _authResult.user.email,
+        id: authResult.user.uid,
+        email: authResult.user.email,
+        name: authResult.user.displayName,
       );
-      if (await Database().createNewUser(_user)) {
-        Get.find<UserController>().user = _user;
-        Get.back();
-      }
+      await Database().createNewUser(_user);
+    } on FirebaseException catch (e) {
+      Get.snackbar(
+        "Error",
+        e.message,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     } catch (e) {
       Get.snackbar(
-        "Error creating Account",
-        e.message,
+        "Error",
+        e.toString(),
         snackPosition: SnackPosition.BOTTOM,
       );
     }
@@ -39,27 +56,29 @@ class AuthController extends GetxController {
 
   void login(String email, String password) async {
     try {
-      AuthResult _authResult = await _auth.signInWithEmailAndPassword(
-          email: email.trim(), password: password);
-      Get.find<UserController>().user =
-          await Database().getUser(_authResult.user.uid);
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar(
+        "Error",
+        e.message,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     } catch (e) {
       Get.snackbar(
-        "Error signing in",
-        e.message,
+        "Error",
+        e.toString(),
         snackPosition: SnackPosition.BOTTOM,
       );
     }
   }
 
-  void signOut() async {
+  void signOut() {
     try {
-      await _auth.signOut();
-      Get.find<UserController>().clear();
+      auth.signOut();
     } catch (e) {
       Get.snackbar(
-        "Error signing out",
-        e.message,
+        "Error",
+        e.toString(),
         snackPosition: SnackPosition.BOTTOM,
       );
     }

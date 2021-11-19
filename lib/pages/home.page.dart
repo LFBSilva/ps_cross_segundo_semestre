@@ -23,9 +23,10 @@ class _HomePageState extends State<HomePage> {
                 currentIndex: currentIndex,
                 onItemTap: (i) => setState(() => currentIndex = i),
                 items: <Icon>[
-                  Icon(Icons.description),
+                  Icon(Icons.exit_to_app),
                   Icon(Icons.description),
                   Icon(Icons.search),
+                  Icon(Icons.settings),
                 ],
               ),
               _AddButton(

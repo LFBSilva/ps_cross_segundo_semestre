@@ -1,8 +1,18 @@
 import 'package:get/get.dart';
-import 'package:ps_cross_2semestre/pages/login.page.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+import 'constants/firebase_constants.dart';
+import 'controllers/authController.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  firebaseInitialization.then((value) {
+    Get.put(AuthController());
+  });
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -10,7 +20,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'PS-CrossPlataform-2Semestre',
       theme: ThemeData(primarySwatch: Colors.blueGrey),
-      home: LoginPage(),
+      home: const Center(
+        child: CircularProgressIndicator(),
+      ),
     );
   }
 }

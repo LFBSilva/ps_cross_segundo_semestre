@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:ps_cross_2semestre/controllers/authController.dart';
 
-import 'home.page.dart';
-
-class LoginPage extends GetWidget<AuthController> {
+class LoginPage extends StatelessWidget {
   final TextEditingController email = TextEditingController();
 
   final TextEditingController senha = TextEditingController();
@@ -52,16 +49,8 @@ class LoginPage extends GetWidget<AuthController> {
               ButtonTheme(
                 height: 60.0,
                 child: RaisedButton(
-                  onPressed: () => {
-                    if (email == 'admin@admin.com' && senha == '123456')
-                      {
-                        // Navigator.of(context).push(
-                        //   MaterialPageRoute(builder: (context) => HomePage()),
-                        // )
-                        Get.to(HomePage()),
-                      }
-                    else
-                      {"Login/Senha incorreto(s)"},
+                  onPressed: () {
+                    AuthController.authInstance.login(email.text, senha.text);
                   },
                   child: Text(
                     "Entrar",
@@ -73,8 +62,10 @@ class LoginPage extends GetWidget<AuthController> {
               ButtonTheme(
                 height: 60.0,
                 child: RaisedButton(
-                  onPressed: () =>
-                      {controller.createUser(email.text, senha.text)},
+                  onPressed: () => {
+                    AuthController.authInstance
+                        .register(email.text, senha.text),
+                  },
                   child: Text(
                     "Criar Usuário",
                     style: TextStyle(color: Colors.deepOrange),
