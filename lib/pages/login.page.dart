@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'home.page.dart';
 
@@ -64,9 +65,10 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () => {
                       if (email == 'admin@admin.com' && senha == '123456')
                         {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => HomePage()),
-                          )
+                          // Navigator.of(context).push(
+                          //   MaterialPageRoute(builder: (context) => HomePage()),
+                          // )
+                          Get.to(HomePage()),
                         }
                       else
                         {"Login/Senha incorreto(s)"},
