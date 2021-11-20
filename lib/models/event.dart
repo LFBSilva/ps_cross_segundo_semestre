@@ -1,9 +1,9 @@
 import 'dart:ffi';
 
-class Event {
-  Double min;
-  Double max;
+class EventModel {
+  double min;
+  double max;
   DateTime dateOfEvent;
 
-  Event({this.min, this.max, this.dateOfEvent});
+  EventModel({this.min, this.max, this.dateOfEvent});
 }

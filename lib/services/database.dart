@@ -1,5 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:get/get.dart';
 import 'package:ps_cross_2semestre/constants/firebase_constants.dart';
+import 'package:ps_cross_2semestre/models/sensor.dart';
 import 'package:ps_cross_2semestre/models/user.dart';
 
 class Database {
@@ -21,55 +23,147 @@ class Database {
       DataSnapshot _doc = await db.child("users").child(uid).once();
       return UserModel.fromDataSnapshot(dataSnapshot: _doc);
     } catch (e) {
-      print(e);
+      Get.snackbar(
+        "Error",
+        e.message,
+        snackPosition: SnackPosition.BOTTOM,
+      );
       rethrow;
     }
   }
 
-  /*Future<void> addTodo(String content, String uid) async {
+  Future<List<SensorModel>> getAllSensors() async {
     try {
-      await _firestore
-          .collection("users")
-          .document(uid)
-          .collection("todos")
-          .add({
-        'dateCreated': Timestamp.now(),
-        'content': content,
-        'done': false,
+      DataSnapshot _doc = await db.child("allSensors").get();
+      List<SensorModel> _sensores = [];
+      _doc.value.forEach((key, value) {
+        _sensores.add(
+          SensorModel(
+            uid: value["uid"],
+            name: value["name"],
+            type: value["type"],
+            status: value["status"],
+            latitude: value["lat"].toDouble(),
+            longitude: value["lng"].toDouble(),
+          ),
+        );
       });
+      return _sensores;
     } catch (e) {
-      print(e);
+      Get.snackbar(
+        "Error",
+        e.message,
+        snackPosition: SnackPosition.BOTTOM,
+      );
       rethrow;
     }
   }
 
-  Stream<List<TodoModel>> todoStream(String uid) {
-    return _firestore
-        .collection("users")
-        .document(uid)
-        .collection("todos")
-        .orderBy("dateCreated", descending: true)
-        .snapshots()
-        .map((QuerySnapshot query) {
-      List<TodoModel> retVal = List();
-      query.documents.forEach((element) {
-        retVal.add(TodoModel.fromDocumentSnapshot(element));
-      });
-      return retVal;
-    });
-  }
-
-  Future<void> updateTodo(bool newValue, String uid, String todoId) async {
+  Future<List<SensorModel>> getTemperaturaSensors() async {
     try {
-      _firestore
-          .collection("users")
-          .document(uid)
-          .collection("todos")
-          .document(todoId)
-          .updateData({"done": newValue});
+      DataSnapshot _doc = await db.child("temperaturaSensores").get();
+      List<SensorModel> _sensores = [];
+      _doc.value.forEach((key, value) {
+        _sensores.add(
+          SensorModel(
+            uid: value["uid"],
+            name: value["name"],
+            type: value["type"],
+            status: value["status"],
+            latitude: value["lat"].toDouble(),
+            longitude: value["lng"].toDouble(),
+          ),
+        );
+      });
+      return _sensores;
     } catch (e) {
-      print(e);
+      Get.snackbar(
+        "Error",
+        e.message,
+        snackPosition: SnackPosition.BOTTOM,
+      );
       rethrow;
     }
-  }*/
+  }
+
+  Future<List<SensorModel>> getOxigenioSensors() async {
+    try {
+      DataSnapshot _doc = await db.child("oxigenioSensores").get();
+      List<SensorModel> _sensores = [];
+      _doc.value.forEach((key, value) {
+        _sensores.add(
+          SensorModel(
+            uid: value["uid"],
+            name: value["name"],
+            type: value["type"],
+            status: value["status"],
+            latitude: value["lat"].toDouble(),
+            longitude: value["lng"].toDouble(),
+          ),
+        );
+      });
+      return _sensores;
+    } catch (e) {
+      Get.snackbar(
+        "Error",
+        e.message,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      rethrow;
+    }
+  }
+
+  Future<List<SensorModel>> getPhSensors() async {
+    try {
+      DataSnapshot _doc = await db.child("phSensores").get();
+      List<SensorModel> _sensores = [];
+      _doc.value.forEach((key, value) {
+        _sensores.add(
+          SensorModel(
+            uid: value["uid"],
+            name: value["name"],
+            type: value["type"],
+            status: value["status"],
+            latitude: value["lat"].toDouble(),
+            longitude: value["lng"].toDouble(),
+          ),
+        );
+      });
+      return _sensores;
+    } catch (e) {
+      Get.snackbar(
+        "Error",
+        e.message,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      rethrow;
+    }
+  }
+
+  Future<List<SensorModel>> getProfundidadeSensors() async {
+    try {
+      DataSnapshot _doc = await db.child("profundidadeSensores").get();
+      List<SensorModel> _sensores = [];
+      _doc.value.forEach((key, value) {
+        _sensores.add(
+          SensorModel(
+            uid: value["uid"],
+            name: value["name"],
+            type: value["type"],
+            status: value["status"],
+            latitude: value["lat"].toDouble(),
+            longitude: value["lng"].toDouble(),
+          ),
+        );
+      });
+      return _sensores;
+    } catch (e) {
+      Get.snackbar(
+        "Error",
+        e.message,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      rethrow;
+    }
+  }
 }

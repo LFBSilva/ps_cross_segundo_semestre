@@ -1,11 +1,16 @@
+import 'dart:ffi';
+
 import 'package:get/get.dart';
 import 'package:ps_cross_2semestre/controllers/authController.dart';
+import 'package:ps_cross_2semestre/models/sensor.dart';
 import 'package:ps_cross_2semestre/pages/Widgets/projects_tab/projects.tab.dart';
 import 'package:ps_cross_2semestre/pages/Widgets/search_tab/search.tab.dart';
 import 'package:ps_cross_2semestre/pages/Widgets/tasks_tab/tasks.tab.dart';
 
-class HomePageController extends GetxController {
+class ProjectsController extends GetxController {
   final currentIndex = 0.obs;
+
+  final tabela = <SensorModel>[].obs;
   setSelectedIndex(int index) {
     if (index == 0) {
       AuthController.authInstance.signOut();

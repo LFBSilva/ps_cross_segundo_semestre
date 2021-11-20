@@ -1,20 +1,85 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ps_cross_2semestre/controllers/homeController.dart';
+import 'package:ps_cross_2semestre/models/sensor.dart';
 
-class HomePage extends StatelessWidget {
+class ProjectsTab extends StatelessWidget {
   final HomePageController controller = Get.put(HomePageController());
-
   @override
   Widget build(BuildContext context) {
+    List<SensorModel> tabela = [
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 1",
+          status: "ATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 2",
+          status: "INATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 3",
+          status: "ATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 4",
+          status: "ATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 5",
+          status: "INATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 6",
+          status: "INATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 7",
+          status: "ATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 8",
+          status: "INATIVO",
+          type: "",
+          uid: ""),
+    ];
     return Scaffold(
         appBar: AppBar(
-          title: Text("Feneco APP"),
+          title: Text("Relatórios"),
         ),
-        body: Text(
-          "App desenvolvido para a matéria de Cross Plataform, com o intuito de mostrar relatórios sobre medidores espalhados em diversos pontos do planeta",
-          textScaleFactor: 3,
-        ),
+        body: ListView.separated(
+            itemBuilder: (BuildContext context, int sensor) {
+              return ListTile(
+                leading: Icon(Icons.add_chart),
+                title: Text(tabela[sensor].name),
+                trailing: Text(tabela[sensor].status.toString()),
+              );
+            },
+            padding: EdgeInsets.all(16),
+            separatorBuilder: (_, ____) => Divider(),
+            itemCount: tabela.length),
         bottomNavigationBar: Container(
           padding: const EdgeInsets.fromLTRB(16, 0, 32, 16),
           child: Row(
@@ -28,7 +93,7 @@ class HomePage extends StatelessWidget {
                   Icon(Icons.description),
                   Icon(Icons.description),
                   Icon(Icons.description),
-                  Icon(Icons.description),
+                  Icon(Icons.description)
                 ],
               ),
               _AddButton(
