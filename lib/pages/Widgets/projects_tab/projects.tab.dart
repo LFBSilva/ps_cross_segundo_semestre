@@ -34,7 +34,7 @@ class ProjectsTab extends StatelessWidget {
                 currentIndex: controller.currentIndex.value,
                 onItemTap: ((i) => controller.setSelectedIndex(i)),
                 items: <Icon>[
-                  Icon(Icons.exit_to_app),
+                  Icon(Icons.arrow_back),
                   Icon(Icons.description),
                   Icon(Icons.description),
                   Icon(Icons.description),
