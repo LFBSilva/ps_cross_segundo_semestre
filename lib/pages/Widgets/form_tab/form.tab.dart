@@ -1,15 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:ps_cross_2semestre/controllers/objectController.dart';
 import 'package:ps_cross_2semestre/controllers/projectsController.dart';
 import 'package:ps_cross_2semestre/models/sensor.dart';
 
-class ProjectsTab extends StatelessWidget {
-  final ProjectsController controller = Get.put(ProjectsController());
+class FormTab extends StatelessWidget {
+  final ObjectController controller = Get.put(ObjectController());
   @override
   Widget build(BuildContext context) {
-    List<SensorModel> tabela = [];
-    controller.tabela.map((e) => tabela.add(e)).toList();
-
+    List<SensorModel> tabela = [
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 1",
+          status: "ATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 2",
+          status: "INATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 3",
+          status: "ATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 4",
+          status: "ATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 5",
+          status: "INATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 6",
+          status: "INATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 7",
+          status: "ATIVO",
+          type: "",
+          uid: ""),
+      SensorModel(
+          latitude: null,
+          longitude: null,
+          name: "SENSOR 8",
+          status: "INATIVO",
+          type: "",
+          uid: ""),
+    ];
     return Scaffold(
         appBar: AppBar(
           title: Text("Relatórios"),

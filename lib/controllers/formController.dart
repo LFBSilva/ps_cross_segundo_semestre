@@ -6,7 +6,7 @@ import 'package:ps_cross_2semestre/pages/Widgets/search_tab/search.tab.dart';
 import 'package:ps_cross_2semestre/pages/Widgets/tasks_tab/tasks.tab.dart';
 import 'package:ps_cross_2semestre/services/database.dart';
 
-class SearchController extends GetxController {
+class FormController extends GetxController {
   final currentIndex = 0.obs;
   final tabela = <SensorModel>[].obs;
 
@@ -31,7 +31,7 @@ class SearchController extends GetxController {
 
   void getData() async {
     try {
-      tabela.value = await Database().getOxigenioSensors();
+      tabela.value = await Database().getProfundidadeSensors();
     } catch (e) {}
   }
 }
