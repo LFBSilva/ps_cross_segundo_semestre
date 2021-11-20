@@ -12,7 +12,7 @@ class ProjectsTab extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Relatórios"),
+          title: Text("Relatórios Total"),
         ),
         body: ListView.separated(
             itemBuilder: (BuildContext context, int sensor) {
@@ -34,20 +34,9 @@ class ProjectsTab extends StatelessWidget {
                 currentIndex: controller.currentIndex.value,
                 onItemTap: ((i) => controller.setSelectedIndex(i)),
                 items: <Icon>[
-                  Icon(Icons.arrow_back),
-                  Icon(Icons.description),
-                  Icon(Icons.description),
-                  Icon(Icons.description),
-                  Icon(Icons.description)
+                  Icon(Icons.home),
                 ],
               ),
-              _AddButton(
-                icon: Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
-                onTap: () {},
-              )
             ],
           ),
         ));
@@ -80,25 +69,6 @@ class _BottomNavigationBar extends StatelessWidget {
           onPressed: () => onItemTap(index),
         );
       }).toList(),
-    );
-  }
-}
-
-class _AddButton extends StatelessWidget {
-  final Icon icon;
-  final GestureTapCallback onTap;
-
-  const _AddButton({@required this.onTap, @required this.icon})
-      : assert(onTap != null),
-        assert(icon != null);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-          color: Theme.of(context).accentColor, shape: BoxShape.circle),
-      child: Center(child: icon),
     );
   }
 }

@@ -1,75 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ps_cross_2semestre/controllers/formController.dart';
 
 import 'package:ps_cross_2semestre/controllers/objectController.dart';
 import 'package:ps_cross_2semestre/controllers/projectsController.dart';
 import 'package:ps_cross_2semestre/models/sensor.dart';
 
 class FormTab extends StatelessWidget {
-  final ObjectController controller = Get.put(ObjectController());
+  final FormController controller = Get.put(FormController());
   @override
   Widget build(BuildContext context) {
-    List<SensorModel> tabela = [
-      SensorModel(
-          latitude: null,
-          longitude: null,
-          name: "SENSOR 1",
-          status: "ATIVO",
-          type: "",
-          uid: ""),
-      SensorModel(
-          latitude: null,
-          longitude: null,
-          name: "SENSOR 2",
-          status: "INATIVO",
-          type: "",
-          uid: ""),
-      SensorModel(
-          latitude: null,
-          longitude: null,
-          name: "SENSOR 3",
-          status: "ATIVO",
-          type: "",
-          uid: ""),
-      SensorModel(
-          latitude: null,
-          longitude: null,
-          name: "SENSOR 4",
-          status: "ATIVO",
-          type: "",
-          uid: ""),
-      SensorModel(
-          latitude: null,
-          longitude: null,
-          name: "SENSOR 5",
-          status: "INATIVO",
-          type: "",
-          uid: ""),
-      SensorModel(
-          latitude: null,
-          longitude: null,
-          name: "SENSOR 6",
-          status: "INATIVO",
-          type: "",
-          uid: ""),
-      SensorModel(
-          latitude: null,
-          longitude: null,
-          name: "SENSOR 7",
-          status: "ATIVO",
-          type: "",
-          uid: ""),
-      SensorModel(
-          latitude: null,
-          longitude: null,
-          name: "SENSOR 8",
-          status: "INATIVO",
-          type: "",
-          uid: ""),
-    ];
+    List<SensorModel> tabela = [];
+    controller.tabela.map((e) => tabela.add(e)).toList();
     return Scaffold(
         appBar: AppBar(
-          title: Text("Relatórios"),
+          title: Text("Relatórios Temperatura"),
         ),
         body: ListView.separated(
             itemBuilder: (BuildContext context, int sensor) {
@@ -91,20 +36,9 @@ class FormTab extends StatelessWidget {
                 currentIndex: controller.currentIndex.value,
                 onItemTap: ((i) => controller.setSelectedIndex(i)),
                 items: <Icon>[
-                  Icon(Icons.exit_to_app),
-                  Icon(Icons.description),
-                  Icon(Icons.description),
-                  Icon(Icons.description),
-                  Icon(Icons.description)
+                  Icon(Icons.home),
                 ],
               ),
-              _AddButton(
-                icon: Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
-                onTap: () {},
-              )
             ],
           ),
         ));
@@ -137,25 +71,6 @@ class _BottomNavigationBar extends StatelessWidget {
           onPressed: () => onItemTap(index),
         );
       }).toList(),
-    );
-  }
-}
-
-class _AddButton extends StatelessWidget {
-  final Icon icon;
-  final GestureTapCallback onTap;
-
-  const _AddButton({@required this.onTap, @required this.icon})
-      : assert(onTap != null),
-        assert(icon != null);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-          color: Theme.of(context).accentColor, shape: BoxShape.circle),
-      child: Center(child: icon),
     );
   }
 }

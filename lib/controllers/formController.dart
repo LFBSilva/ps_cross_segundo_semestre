@@ -36,7 +36,7 @@ class FormController extends GetxController {
 
   void getData() async {
     try {
-      tabela.value = await Database().getProfundidadeSensors();
+      tabela.value = await Database().getTemperaturaSensors();
     } catch (e) {}
   }
 }
