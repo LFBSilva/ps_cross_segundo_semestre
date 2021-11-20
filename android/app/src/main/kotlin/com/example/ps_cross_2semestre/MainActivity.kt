@@ -1,4 +1,4 @@
-package com.example.ps_cross_2semestre
+package br.fiap.rm83025.ps_cross_semestre2
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -2,18 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ps_cross_2semestre/controllers/homeController.dart';
 
-class HomePage extends StatelessWidget {
+class TasksTab extends StatelessWidget {
   final HomePageController controller = Get.put(HomePageController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Feneco APP"),
+          title: Text("Sobre"),
         ),
-        body: Text(
-          "App desenvolvido para a matéria de Cross Plataform, com o intuito de mostrar relatórios sobre medidores espalhados em diversos pontos do planeta",
-          textScaleFactor: 3,
+        body: Column(
+          children: [
+            Text("Lucas Jien Wei Chuang                RM79867"),
+            Text("Tiago Kazuo Lino                RM 82371"),
+            Text("Henrique da Costa Maia            RM 83338"),
+            Text("Luiz Felipe Brandão da Silva    RM 83025"),
+            Text(
+              "Pedro Henrique da Fonseca Lopes  RM 82472",
+            ),
+          ],
         ),
         bottomNavigationBar: Container(
           padding: const EdgeInsets.fromLTRB(16, 0, 32, 16),
@@ -27,8 +33,7 @@ class HomePage extends StatelessWidget {
                   Icon(Icons.exit_to_app),
                   Icon(Icons.description),
                   Icon(Icons.description),
-                  Icon(Icons.description),
-                  Icon(Icons.description),
+                  Icon(Icons.settings),
                 ],
               ),
               _AddButton(

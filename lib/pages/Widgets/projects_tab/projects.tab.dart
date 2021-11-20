@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ps_cross_2semestre/controllers/homeController.dart';
+import 'package:ps_cross_2semestre/controllers/projectsController.dart';
+import 'package:ps_cross_2semestre/models/sensor.dart';
 
-class HomePage extends StatelessWidget {
-  final HomePageController controller = Get.put(HomePageController());
-
+class ProjectsTab extends StatelessWidget {
+  final ProjectsController controller = Get.put(ProjectsController());
   @override
   Widget build(BuildContext context) {
+    List<SensorModel> tabela = [];
+    controller.tabela.map((e) => tabela.add(e)).toList();
+
     return Scaffold(
         appBar: AppBar(
-          title: Text("Feneco APP"),
+          title: Text("Relatórios"),
         ),
-        body: Text(
-          "App desenvolvido para a matéria de Cross Plataform, com o intuito de mostrar relatórios sobre medidores espalhados em diversos pontos do planeta",
-          textScaleFactor: 3,
-        ),
+        body: ListView.separated(
+            itemBuilder: (BuildContext context, int sensor) {
+              return ListTile(
+                leading: Icon(Icons.add_chart),
+                title: Text(tabela[sensor].name),
+                trailing: Text(tabela[sensor].status.toString()),
+              );
+            },
+            padding: EdgeInsets.all(16),
+            separatorBuilder: (_, ____) => Divider(),
+            itemCount: tabela.length),
         bottomNavigationBar: Container(
           padding: const EdgeInsets.fromLTRB(16, 0, 32, 16),
           child: Row(
@@ -24,11 +34,11 @@ class HomePage extends StatelessWidget {
                 currentIndex: controller.currentIndex.value,
                 onItemTap: ((i) => controller.setSelectedIndex(i)),
                 items: <Icon>[
-                  Icon(Icons.exit_to_app),
+                  Icon(Icons.arrow_back),
                   Icon(Icons.description),
                   Icon(Icons.description),
                   Icon(Icons.description),
-                  Icon(Icons.description),
+                  Icon(Icons.description)
                 ],
               ),
               _AddButton(

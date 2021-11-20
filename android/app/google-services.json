@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "283307618765",
+    "project_id": "ps-cross",
+    "storage_bucket": "ps-cross.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283307618765:android:6c4c558e1a2de830f25484",
+        "android_client_info": {
+          "package_name": "br.fiap.rm83025.ps_cross_semestre2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283307618765-5cd4vfa0s6uhbukcbv5up5knkdcaqc1k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.fiap.rm83025.ps_cross_semestre2",
+            "certificate_hash": "a00b6bbfd73129322593ad97e0a22c6fbe6ada7c"
+          }
+        },
+        {
+          "client_id": "283307618765-k5gnsupibkultt90hhcqs9hbgqaq492p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXwY0CiORJtt4bTWdascY9_idyldMTor0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283307618765-k5gnsupibkultt90hhcqs9hbgqaq492p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
